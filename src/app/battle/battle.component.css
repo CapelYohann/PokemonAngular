@@ -1,0 +1,30 @@
+#chat {
+  margin: 10%;
+  /* border: 2px solid black;
+  border-radius: 2px; */
+  /* padding: 10px; */
+  overflow-y: auto;
+  flex-grow: 1;
+  height: 150px;
+}
+
+#bg {
+  background: url('../../assets/images/background.jpg') no-repeat;
+  background-size: 100% 100%;
+}
+
+.statPanel {
+  background: white;
+  border: 2px solid black;
+  border-radius: 3px;
+  padding: 2%;
+  opacity: 70%;
+}
+
+.pkmn2 {
+  margin-top: 26%;
+}
+
+#pkmn2 {
+  margin-right: 30%;
+}

@@ -1,0 +1,40 @@
+<mat-grid-list cols="2" rowHeight="2:1" id="bg">
+  <mat-grid-tile>
+
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div class="pkmn2 statPanel">
+      {{p2.name}}<br>
+      {{p2.health}}/{{p2.maxHealth}}
+    </div>
+    <img src="assets/images/{{p2.name}}.png" style="width:50%" class="pkmn2" id="pkmn2">
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <img src="assets/images/{{p1.name}}.png" style="width:60%">
+    <div class="statPanel">
+      {{p1.name}}<br>
+      {{p1.health}}/{{p1.maxHealth}}
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile >
+    <div id="chat" class="statPanel">
+      <div *ngFor="let str of log; let i = index">
+        {{str}}<br>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<!-- <div>{{p1.name}}      </div>
+<br/>
+
+
+
+<div>{{p1.health}}/{{p1.maxHealth}} {{p2.health}}/{{p2.maxHealth}}</div> -->
+<div *ngIf='areFighting'>
+  <button  (click)='stopBattle()'>Stop fight</button><br>
+</div>
+<div  *ngIf='!areFighting'>
+  <button  (click)='battle()'>Start fight</button><br>
+</div>
+<!-- --------------------<br/> -->
