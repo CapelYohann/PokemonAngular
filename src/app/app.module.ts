@@ -7,11 +7,15 @@ import { BattleComponent } from './battle/battle.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatGridListModule} from '@angular/material/grid-list';
+import { LoggerComponent } from './logger/logger.component';
+import { PkmnFightComponent } from './battle/pkmn-fight/pkmn-fight.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BattleComponent
+    BattleComponent,
+    LoggerComponent,
+    PkmnFightComponent
   ],
   imports: [
     BrowserModule,

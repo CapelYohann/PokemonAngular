@@ -1,24 +1,30 @@
-#chat {
+#log_pannel {
+  width: 100%;
   margin: 10%;
-  /* border: 2px solid black;
-  border-radius: 2px; */
-  /* padding: 10px; */
-  overflow-y: auto;
-  flex-grow: 1;
-  height: 150px;
 }
 
-#bg {
-  background: url('../../assets/images/background.jpg') no-repeat;
-  background-size: 100% 100%;
+#expl_p1 {
+  margin-right: 14%;
+  margin-bottom: 10%;
+  height: 200px;
 }
 
-.statPanel {
+#expl_p2 {
+  margin-right: 14%;
+  margin-top: 2%;
+}
+
+.panel {
   background: white;
   border: 2px solid black;
   border-radius: 3px;
   padding: 2%;
   opacity: 70%;
+}
+
+#bg {
+  background: url('../../assets/images/background.jpg') no-repeat;
+  background-size: 100% 100%;
 }
 
 .pkmn2 {
@@ -27,4 +33,42 @@
 
 #pkmn2 {
   margin-right: 30%;
+}
+
+#winner {
+  font-size: 60px;
+  margin-right: 10%;
+  color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.fightButton {
+  font-size: 25px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid black;
+  color: white;
+}
+
+#startButton {
+  background: #259e55;
+}
+
+#startButton:hover {
+  cursor: pointer;
+  background: #54ca83;
+}
+
+#stopButton {
+  background: #ce5959;
+}
+
+#stopButton:hover {
+  cursor: pointer;
+  background: #ea6f6f;
+}
+
+#Pikachu_p1 {
+  height: 200px;
+  margin-bottom: 10%;
 }

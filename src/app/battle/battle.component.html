@@ -1,27 +1,35 @@
 <mat-grid-list cols="2" rowHeight="2:1" id="bg">
   <mat-grid-tile>
-
+    <div *ngIf='areFighting; else startElse'>
+      <button  (click)='stopBattle()' class="fightButton" id="stopButton">Stop fight</button><br>
+    </div>
+    <ng-template #startElse>
+      <button  (click)='battle()' class="fightButton" id="startButton">Start fight</button><br>
+    </ng-template>
   </mat-grid-tile>
   <mat-grid-tile>
-    <div class="pkmn2 statPanel">
+    <pkmn-fight [pokemon]="p2" [facing]="'front'"></pkmn-fight>
+    <!-- <div class="pkmn2 panel" *ngIf="p2.health > 0">
       {{p2.name}}<br>
       {{p2.health}}/{{p2.maxHealth}}
     </div>
-    <img src="assets/images/{{p2.name}}.png" style="width:50%" class="pkmn2" id="pkmn2">
+    <img src="assets/images/{{p2.name}}.png" style="width:50%" class="pkmn2" id="pkmn2" *ngIf="p2.health > 0">
+    <img src="assets/images/dead_gif.gif"   *ngIf="p2.health <= 0" id="expl_p2"> -->
   </mat-grid-tile>
   <mat-grid-tile>
-    <img src="assets/images/{{p1.name}}.png" style="width:60%">
-    <div class="statPanel">
+    <img src="assets/images/{{p1.name}}_gif.gif" id="{{p1.name}}_p1" *ngIf="p1.health > 0">
+    <img src="assets/images/dead_gif.gif" *ngIf="p1.health <= 0" id="expl_p1">
+
+    <div class="panel" *ngIf="p1.health > 0">
       {{p1.name}}<br>
       {{p1.health}}/{{p1.maxHealth}}
     </div>
   </mat-grid-tile>
-  <mat-grid-tile >
-    <div id="chat" class="statPanel">
-      <div *ngFor="let str of log; let i = index">
-        {{str}}<br>
-      </div>
-    </div>
+  <mat-grid-tile>
+    <logger id="log_pannel" *ngIf="!isFightOver; else elseBlock"></logger>
+    <ng-template #elseBlock>
+      <h1 id="winner">{{winner.name}} won !</h1>
+    </ng-template>
   </mat-grid-tile>
 </mat-grid-list>
 
@@ -31,10 +39,4 @@
 
 
 <div>{{p1.health}}/{{p1.maxHealth}} {{p2.health}}/{{p2.maxHealth}}</div> -->
-<div *ngIf='areFighting'>
-  <button  (click)='stopBattle()'>Stop fight</button><br>
-</div>
-<div  *ngIf='!areFighting'>
-  <button  (click)='battle()'>Start fight</button><br>
-</div>
 <!-- --------------------<br/> -->

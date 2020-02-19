@@ -1,0 +1,7 @@
+<img src="assets/images/{{pokemon.name}}_gif.gif" id="{{pokemon.name}}_p1" *ngIf="pokemon.health > 0">
+<img src="assets/images/dead_gif.gif" *ngIf="pokemon.health <= 0">
+
+<div class="panel" *ngIf="pokemon.health > 0">
+  {{pokemon.name}}<br>
+  {{pokemon.health}}/{{pokemon.maxHealth}}
+</div>
