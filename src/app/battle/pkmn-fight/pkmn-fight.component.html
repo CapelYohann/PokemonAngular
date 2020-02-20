@@ -1,11 +1,15 @@
 <mat-grid-list cols="2" rowHeight="1:1" id="grid">
   <mat-grid-tile>
-    <img src="assets/images/{{pokemon.name}}_gif.gif" id="pkmn" *ngIf="pokemon.health > 0">
+    <img src="{{pokemon['sprite_' + facing]}}" id="pkmn" *ngIf="pokemon.health > 0">
     <img src="assets/images/dead_gif.gif" *ngIf="pokemon.health <= 0" id="expl">
   </mat-grid-tile>
   <mat-grid-tile>
     <div class="panel" *ngIf="pokemon.health > 0">
-      {{pokemon.name}}<br>
+      {{pokemon.name}}<br/>
+      <div class="health-box">
+        <div class="health-bar" [ngStyle]="{ width:((pokemon.health / pokemon.maxHealth) * 100) + 'px' }"></div>
+      </div>
+
       {{pokemon.health}}/{{pokemon.maxHealth}}
     </div>
   </mat-grid-tile>

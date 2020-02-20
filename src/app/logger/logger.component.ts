@@ -9,6 +9,8 @@ import { Line } from './interface/line'
 })
 export class LoggerComponent implements OnInit {
 
+  date = new Date();
+
   constructor(private logger: LoggerService) { }
 
   ngOnInit(): void {
