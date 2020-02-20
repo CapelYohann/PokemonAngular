@@ -9,19 +9,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { LoggerComponent } from './logger/logger.component';
 import { PkmnFightComponent } from './battle/pkmn-fight/pkmn-fight.component';
+import { HighlightDirective } from './logger/directive/highlight.directive';
+
+import {NgxAutoScrollModule} from "ngx-auto-scroll";
 
 @NgModule({
   declarations: [
     AppComponent,
     BattleComponent,
     LoggerComponent,
-    PkmnFightComponent
+    PkmnFightComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatGridListModule
+    MatGridListModule,
+    NgxAutoScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

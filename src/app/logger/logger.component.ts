@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {LoggerService} from './service/logger.service'
+import { LoggerService} from './service/logger.service'
+import { Line } from './interface/line'
 
 @Component({
   selector: 'logger',
@@ -14,7 +15,7 @@ export class LoggerComponent implements OnInit {
 
   }
 
-  getLogs(): string[] {
+  getLogs(): Line[] {
     return this.logger.get();
   }
 }

@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Line } from '../interface/line';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoggerService {
 
-  private log: string[];
+  private log: Line[];
 
   constructor() {
     this.clear();
   }
 
-  add(str: string): void {
-    this.log.push(str);
+  add(log: string, pokemon: string): void {
+    this.log.push({ line: log, pokemon: pokemon });
   }
 
-  get(): string[] {
+  get(): Line[] {
     return this.log;
   }
 

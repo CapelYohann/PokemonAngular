@@ -1,7 +1,12 @@
-<img src="assets/images/{{pokemon.name}}_gif.gif" id="{{pokemon.name}}_p1" *ngIf="pokemon.health > 0">
-<img src="assets/images/dead_gif.gif" *ngIf="pokemon.health <= 0">
-
-<div class="panel" *ngIf="pokemon.health > 0">
-  {{pokemon.name}}<br>
-  {{pokemon.health}}/{{pokemon.maxHealth}}
-</div>
+<mat-grid-list cols="2" rowHeight="1:1" id="grid">
+  <mat-grid-tile>
+    <img src="assets/images/{{pokemon.name}}_gif.gif" id="pkmn" *ngIf="pokemon.health > 0">
+    <img src="assets/images/dead_gif.gif" *ngIf="pokemon.health <= 0" id="expl">
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div class="panel" *ngIf="pokemon.health > 0">
+      {{pokemon.name}}<br>
+      {{pokemon.health}}/{{pokemon.maxHealth}}
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
