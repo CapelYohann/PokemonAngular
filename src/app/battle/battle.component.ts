@@ -3,8 +3,7 @@ import { Pokemon } from '../classes/Pokemon'
 import { Battle } from '../classes/Battle';
 import { Priority } from '../classes/Priority';
 import { Attack } from '../classes/Attack';
-import { Round } from '../classes/Round';
-import { LoggerService } from '../logger/service/logger.service'
+import { BattleService } from './service/battle.service';
 
 @Component({
   selector: 'app-battle',
@@ -17,13 +16,10 @@ export class BattleComponent implements OnInit {
   p2: Pokemon;
   winner: Pokemon;
 
-  timeoutId: number;
-  roundCount = 1;
-  round: Round;
   areFighting = false;
   isFightOver = false;
 
-  constructor(private logger: LoggerService) { }
+  constructor(private battle: BattleService) { }
 
   ngOnInit(): void {
     const a_attack = new Attack('Vive attaque', 40, 65, Priority.Low);
@@ -31,61 +27,16 @@ export class BattleComponent implements OnInit {
     this.p1 = new Pokemon('Pikachu', 100, 100, 30, 20, 1, undefined, a_attack);
     this.p2 = new Pokemon('Salameche', 100, 100, 30, 20, 1, undefined, b_attack);
 
-    this.round = new Round();
-    // this.battle();
+    this.battle.init();
+  }
+
+  startBattle(): void  {
+    this.areFighting = true;
+    this.battle.battle(this.p1, this.p2, this.winner, this.isFightOver);
   }
 
   stopBattle(): void {
     this.areFighting = false;
-    clearInterval(this.timeoutId);
-  }
-
-  battle(): void {
-    this.areFighting = true;
-    this.timeoutId = setInterval(() => {
-      this.logger.add("Round " + this.roundCount, null);
-      console.log("Round " + this.roundCount);
-      this.roundCount++;
-
-      let order = this.round.getOrder(this.p1, this.p2);
-      this.logger.add(order[0].name + " is attacking using " + order[0].chosenSpell.name + " !", order[0].name);
-
-      let hp = order[1].health;
-      if(!this.round.hitPokemon(order[0], order[1])) {
-        this.logger.add(order[0].name + " missed !", order[0].name);
-      } else {
-        this.logger.add(order[0].name + " dealt " + (hp - order[1].health) + "!", order[0].name);
-      }
-
-      if(order[0].health <= 0 || order[1].health <= 0) {
-        this.getWinner();
-        clearInterval(this.timeoutId);
-        return;
-      }
-
-      this.logger.add(order[1].name + " is attacking using " + order[1].chosenSpell.name + " !", order[1].name);
-      hp = order[0].health;
-      if(!this.round.hitPokemon(order[1], order[0])) {
-        this.logger.add(order[1].name + " missed !", order[1].name);
-      } else {
-        this.logger.add(order[1].name + " dealt " + (hp - order[0].health) + "!", order[1].name);
-      }
-      // this.logger.add("<br><br><br>");
-      if(order[0].health <= 0 || order[1].health <= 0) {
-        this.getWinner();
-        clearInterval(this.timeoutId);
-        return;
-      }
-    }, 1000);
-  }
-
-  getWinner() {
-    this.isFightOver = true;
-
-    if(this.p1.health <= 0) {
-      this.winner = this.p2;
-    } else {
-      this.winner = this.p1;
-    }
+    this.battle.stopBattle();
   }
 }

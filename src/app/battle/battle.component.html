@@ -1,10 +1,10 @@
 <mat-grid-list cols="2" rowHeight="2:1" id="bg">
   <mat-grid-tile>
     <div *ngIf='areFighting; else startElse'>
-      <button  (click)='stopBattle()' class="fightButton" id="stopButton">Stop fight</button><br>
+      <button (click)='stopBattle()' class="fightButton" id="stopButton">Stop fight</button><br>
     </div>
     <ng-template #startElse>
-      <button  (click)='battle()' class="fightButton" id="startButton">Start fight</button><br>
+      <button (click)='startBattle()' class="fightButton" id="startButton">Start fight</button><br>
     </ng-template>
   </mat-grid-tile>
   <mat-grid-tile>
