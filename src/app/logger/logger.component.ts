@@ -9,13 +9,16 @@ import { Line } from './interface/line'
 })
 export class LoggerComponent implements OnInit {
 
+  isEmpty: boolean;
+
   constructor(private logger: LoggerService) { }
 
   ngOnInit(): void {
-
+  	this.isEmpty = true;
   }
 
   getLogs(): Line[] {
+  	this.isEmpty = false;
     return this.logger.get();
   }
 }
