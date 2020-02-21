@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { LoggerService } from '../../../logger/service/logger.service';
 import { Pokemon } from '../../../classes/Pokemon'
 import { RoundService } from '../round/round.service'
@@ -58,6 +58,9 @@ export class BattleService {
 
   constructor(private roundService: RoundService, private logger: LoggerService, private decimalPipe: DecimalPipe) { }
 
+  resetRoundCount() {
+    this.roundCount = 1;
+  }
   getTypes(): string[] {
     return this.type_index;
   }

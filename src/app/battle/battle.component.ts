@@ -25,6 +25,7 @@ export class BattleComponent implements OnInit {
   constructor(private battle: BattleService, private pokemonService: PokemonService, private route: ActivatedRoute, private loggerService: LoggerService, private router: Router) { }
 
   ngOnInit(): void {
+    this.battle.resetRoundCount();
     this.loggerService.clear();
 
     const a_attack = new Attack('Attack physique !', .3, 60, 'normal', true, Priority.High);
@@ -41,6 +42,8 @@ export class BattleComponent implements OnInit {
            this.pokemonService.getPokemonByName(param)
            .subscribe((data: Pokemon) => {
                this.p1 = data;
+               this.p1.maxHealth = Math.round(this.p1.maxHealth * 1.5);
+               this.p1.health = this.p1.maxHealth;
                a_attack.type = this.p1.type;
                this.p1.chosenMove = a_attack;
                console.log(this.p1);
@@ -59,6 +62,8 @@ export class BattleComponent implements OnInit {
             this.pokemonService.getPokemonByName(param)
               .subscribe((data: Pokemon) => {
                 this.p2 = data;
+                this.p2.maxHealth = Math.round(this.p2.maxHealth * 1.5);
+                this.p2.health = this.p2.maxHealth;
                 b_attack.type = this.p2.type;
                 this.p2.chosenMove = b_attack;
               });
@@ -77,6 +82,7 @@ export class BattleComponent implements OnInit {
   }
 
   return(): void {
+    this.stopBattle();
     this.router.navigate(['/selector']);
   }
 }
