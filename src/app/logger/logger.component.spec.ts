@@ -13,7 +13,7 @@ import { Line } from './interface/line';
 
 class ActLine implements Line{
   line: string;
-  pokemon: string;
+  type: string;
 };
 
 describe('LoggerComponent', () => {
@@ -25,24 +25,26 @@ describe('LoggerComponent', () => {
     TestBed.configureTestingModule({
         declarations: [LoggerComponent],
         providers: [LoggerService]
-    }); 
+    });
 
     fixture = TestBed.createComponent(LoggerComponent);
     component = fixture.componentInstance;
     //view = fixture.debugElement.nativeElement;
     //fixture.detectChanges();
 
-        service = TestBed.inject(LoggerService);
+    // service = TestBed.inject(LoggerService);
 
   });
 
   it('should create', () => {
-      let l = new ActLine();
-      l.line = "test";
-      l.pokemon = "pok";
-        spyOn(service, "get").and.returnValue(l);
-        expect(component.getLogs()).toBeTruthy();
-        expect(service.get()).toHaveBeenCalled();
+    const service = TestBed.get(LoggerService);
+
+    let l = new ActLine();
+    l.line = "test";
+    l.type = "pok";
+    spyOn(service, "get").and.returnValue(l);
+    expect(component.getLogs()).toBeTruthy();
+    expect(service.get()).toHaveBeenCalled();
   });
 
 /*

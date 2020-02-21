@@ -48,7 +48,7 @@ export class PokemonService {
     return id === 0 ? this.createdPokemon1 : this.createdPokemon2;
   }
 
-  getPokemonByName(name: number): Observable<Pokemon> {
+  getPokemonByName(name: string): Observable<Pokemon> {
     return this.http.get<IApiPokemon>(this.url + name)
       .pipe(map((data: IApiPokemon): Pokemon => {
 

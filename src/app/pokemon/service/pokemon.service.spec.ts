@@ -9,16 +9,20 @@ describe('PokemonService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-        imports: [ HttpClient ],
+      providers: [
+        PokemonService,
+        { provide: HttpClient, useValue: { log: jasmine.createSpy() } }
+      ]
     });
-    service = TestBed.inject(PokemonService);
+    // service = TestBed.inject(PokemonService);
   });
-  
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
   it('should make request to get pokemon', () => {
-    expect(service.getPokemonById(2)).toBeTruthy();
+    const service = TestBed.get(PokemonService);
+    expect(service.getPokemonByName("charizard")).toBeTruthy();
   });
 });

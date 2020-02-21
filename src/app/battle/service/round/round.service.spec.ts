@@ -12,6 +12,33 @@ describe('RoundService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(RoundService);
+    this.a =  {
+      name: '',
+      health: 1,
+      maxHealth: 0,
+      attack: 0,
+      attack_spe: 0,
+      defense: 0,
+      defense_spe: 0,
+      speed: 0,
+      type: '',
+      sprite_face: '',
+      sprite_back: ''
+    };
+
+    this.b = {
+      name: '',
+      health: 1,
+      maxHealth: 0,
+      attack: 0,
+      attack_spe: 0,
+      defense: 0,
+      defense_spe: 0,
+      speed: 0,
+      type: '',
+      sprite_face: '',
+      sprite_back: ''
+    }
   });
 
   it('should be created', () => {
@@ -23,7 +50,7 @@ describe('RoundService', () => {
   });
 
   it('should fail to compare attack priority', () => {
-    expect(service.getFastestPokemon(a, b)).toThrow(new Error("Pokemon  speed is not valid"));
+    expect(service.getFastestPokemon(a, b)).toThrow(new Error("Pokemon speed is not valid"));
   });
 
   it('should fail to get order', () => {
