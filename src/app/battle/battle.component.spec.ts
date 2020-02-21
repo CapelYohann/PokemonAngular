@@ -1,10 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BattleComponent } from './battle.component';
-import { LoggerService } from './../logger/service/logger.service';
-import { Line } from '../logger/interface/line';
+import { BattleService } from './service/battle/battle.service';
+import { PokemonService } from '../pokemon/service/pokemon.service';
+import { HttpClient } from '@angular/common/http';
 
-class MockLoggerService extends LoggerService {
+class MockBattleService extends BattleService {
+};
+
+
+class MockPokemonService extends PokemonService {
 };
 
 describe('BattleComponent', () => {
@@ -12,38 +17,40 @@ describe('BattleComponent', () => {
   
 
 
-  let service: MockLoggerService;
+  let service: MockBattleService;
+  let mockPokemonService: MockPokemonService;
   let component: BattleComponent;
   let fixture: ComponentFixture<BattleComponent>;
-
-  /*beforeEach(async(() => {
+  let http: HttpClient;
+/*
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BattleComponent ]
     })
     .compileComponents();
-  }));
+  }));*/
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BattleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     TestBed.configureTestingModule({
       // provide the component-under-test and dependent service
       declarations: [ BattleComponent ],
-      providers: [LoggerService]
+      providers: [BattleService]
     });
+    fixture = TestBed.createComponent(BattleComponent);
     // inject both the component and the dependent service.
     component = TestBed.inject(BattleComponent);
-    service = TestBed.inject(LoggerService);
+    service = TestBed.inject(BattleService);
 
-  });*/
+  });
   beforeEach(() => { (2)
-    service = new MockLoggerService();
-    component = new BattleComponent(service);
+    mockPokemonService = new MockPokemonService(http);
+    component = new BattleComponent(service, mockPokemonService);
   });
 
   afterEach(() => {
-    service = null;
+    mockPokemonService = null;
     component = null;
   });
 
@@ -53,7 +60,7 @@ describe('BattleComponent', () => {
 
 
   it('should start battle', () => {
-      expect(component.areFighting).toBe(true);
+      expect(component.areFighting).toBe(false);
   });
 
 
