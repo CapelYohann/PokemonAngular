@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Create Pokemon</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput type="text" [(ngModel)]="pokemon.name" name="name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Health</mat-label>
+    <input matInput type="number" [(ngModel)]="pokemon.maxHealth" name="maxHealth">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Attack</mat-label>
+    <input matInput type="number" [(ngModel)]="pokemon.attack" name="attack">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Attack_spe</mat-label>
+    <input matInput type="number" [(ngModel)]="pokemon.attack_spe" name="attack_spe">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Defense</mat-label>
+    <input matInput type="number" [(ngModel)]="pokemon.defense" name="defense">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Defense_spe</mat-label>
+    <input matInput type="number" [(ngModel)]="pokemon.defense_spe" name="defense_spe">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Speed</mat-label>
+    <input matInput type="number" [(ngModel)]="pokemon.speed" name="speed">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Type</mat-label>
+    <mat-select [(ngModel)]="pokemon.type" name="type">
+      <mat-option *ngFor="let type of getTypes()" [value]="type">
+        {{type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Sprite_face</mat-label>
+    <input matInput type="text" [(ngModel)]="pokemon.sprite_face" name="sprite_face">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Sprite_back</mat-label>
+    <input matInput type="text" [(ngModel)]="pokemon.sprite_back" name="sprite_back">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="warn" (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="pokemon" cdkFocusInitial>Save</button>
+</div>

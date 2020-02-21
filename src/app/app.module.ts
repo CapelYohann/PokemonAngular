@@ -17,6 +17,10 @@ import { DecimalPipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { SelectorComponent } from './selector/selector.component';
 
+import {MatCardModule} from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +36,9 @@ import { SelectorComponent } from './selector/selector.component';
     BrowserAnimationsModule,
     MatGridListModule,
     NgxAutoScrollModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    FormsModule
   ],
   providers: [DecimalPipe],
   bootstrap: [AppComponent]

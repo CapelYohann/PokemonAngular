@@ -14,18 +14,20 @@ export class PkmnFightComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.pokemon = {
-      name: '',
-      health: 0,
-      maxHealth: 0,
-      attack: 0,
-      attack_spe: 0,
-      defense: 0,
-      defense_spe: 0,
-      speed: 0,
-      type: '',
-      sprite_face: '',
-      sprite_back: ''
+    if(this.pokemon === undefined) {
+      this.pokemon = {
+        name: '',
+        health: 1,
+        maxHealth: 0,
+        attack: 0,
+        attack_spe: 0,
+        defense: 0,
+        defense_spe: 0,
+        speed: 0,
+        type: '',
+        sprite_face: '',
+        sprite_back: ''
+      }
     }
   }
 
