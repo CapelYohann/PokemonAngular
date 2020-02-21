@@ -14,14 +14,15 @@ export class HighlightDirective implements OnInit {
 
   @Input() pokemon: string;
   array: IArray = {
-    'Pikachu': '#ffbe00',
-    'Salameche': 'red'
+    'pikachu': '#ffbe00',
+    'charmander': 'red'
   };
 
   constructor() { }
 
   ngOnInit() {
     console.log(this.array[this.pokemon])
-    this.color = this.array[this.pokemon];
+    if(this.pokemon)
+      this.color = this.array[this.pokemon.toLowerCase()];
   }
 }

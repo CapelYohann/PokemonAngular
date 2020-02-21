@@ -13,22 +13,28 @@ import { HighlightDirective } from './logger/directive/highlight.directive';
 
 import {NgxAutoScrollModule} from "ngx-auto-scroll";
 
+import { DecimalPipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { SelectorComponent } from './selector/selector.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     BattleComponent,
     LoggerComponent,
     PkmnFightComponent,
-    HighlightDirective
+    HighlightDirective,
+    SelectorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatGridListModule,
-    NgxAutoScrollModule
+    NgxAutoScrollModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DecimalPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
