@@ -51,6 +51,7 @@
 }
 
 #startButton {
+  width: 150px;
   background: #259e55;
 }
 
@@ -60,12 +61,24 @@
 }
 
 #stopButton {
+  width: 150px;
   background: #ce5959;
 }
 
 #stopButton:hover {
   cursor: pointer;
   background: #ea6f6f;
+}
+
+#returnButton {
+  width: 150px;
+  margin-right: 20px;
+  background: #ea9800;
+}
+
+#returnButton:hover {
+  cursor: pointer;
+  background: #f7b439;
 }
 
 #Pikachu_p1 {

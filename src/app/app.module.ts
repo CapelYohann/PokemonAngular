@@ -19,6 +19,13 @@ import { SelectorComponent } from './selector/selector.component';
 
 import {MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './selector/dialog/dialog.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -28,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     LoggerComponent,
     PkmnFightComponent,
     HighlightDirective,
-    SelectorComponent
+    SelectorComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +46,12 @@ import { FormsModule } from '@angular/forms';
     NgxAutoScrollModule,
     HttpClientModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [DecimalPipe],
   bootstrap: [AppComponent]

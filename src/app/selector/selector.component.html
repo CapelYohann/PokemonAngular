@@ -1,4 +1,4 @@
-<div id="background">
+<div id="background" style="height:100%">
   <div id="title">
     POKEMON BATTLE
   </div>
@@ -25,14 +25,14 @@
           <p>{{p.name}}</p>
         </mat-card-content>
       </mat-card>
-      <mat-card class="card" (click)="addPokemon = !addPokemon">
+      <mat-card class="card" (click)="openDialog()">
         <img mat-card-image src="/assets/images/plus.png" style="margin-top:13px">
         <mat-card-content>
           <p>Add</p>
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="pannelList" *ngIf="addPokemon">
+    <!-- <div class="pannelList" *ngIf="addPokemon">
       <form (submit)="savePokemon()" novalidate>
         <label>
           Name:
@@ -81,7 +81,7 @@
         <button type="submit">Save</button>
       </form>
       <br/><br/>
-    </div>
+    </div> -->
   </div>
 </div>
 <!-- <mat-grid-list cols="2" rowHeight="2:1" id="bg">

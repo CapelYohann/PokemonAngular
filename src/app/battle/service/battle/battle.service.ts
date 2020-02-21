@@ -61,7 +61,7 @@ export class BattleService {
   getTypes(): string[] {
     return this.type_index;
   }
-  
+
   stopBattle(): void {
     // clearInterval(this.timeoutId);
     this.subscriber.unsubscribe();
@@ -76,13 +76,13 @@ export class BattleService {
       this.roundCount++;
 
       let order = this.roundService.getOrder(p1, p2);
-      this.logger.add(order[0].name + " is attacking using " + order[0].chosenMove.name + " !", order[0].name);
+      this.logger.add(order[0].name + " is attacking using " + order[0].chosenMove.name + " !", order[0].type);
 
       let hp = order[1].health;
       if((damages = this.hitPokemon(order[0], order[1])) === 0) {
-        this.logger.add(order[0].name + " missed !", order[0].name);
+        this.logger.add(order[0].name + " missed !", order[0].type);
       } else {
-        this.logger.add(order[0].name + " dealt " + damages + "!", order[0].name);
+        this.logger.add(order[0].name + " dealt " + damages + "!", order[0].type);
       }
 
       if(order[0].health <= 0 || order[1].health <= 0) {
@@ -91,12 +91,12 @@ export class BattleService {
         return;
       }
 
-      this.logger.add(order[1].name + " is attacking using " + order[1].chosenMove.name + " !", order[1].name);
+      this.logger.add(order[1].name + " is attacking using " + order[1].chosenMove.name + " !", order[1].type);
       hp = order[0].health;
       if((damages = this.hitPokemon(order[1], order[0])) === 0) {
-        this.logger.add(order[1].name + " missed !", order[1].name);
+        this.logger.add(order[1].name + " missed !", order[1].type);
       } else {
-        this.logger.add(order[1].name + " dealt " + damages + "!", order[1].name);
+        this.logger.add(order[1].name + " dealt " + damages + "!", order[1].type);
       }
 
       if(order[0].health <= 0 || order[1].health <= 0) {
@@ -155,7 +155,7 @@ export class BattleService {
           damages = damages - p2.defense_spe / 4;
       }
 
-      this.logger.add(""+damages, p1.name);
+      // this.logger.add(""+damages, p1.name);
       return damages;
     }
     return 0;
