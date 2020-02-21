@@ -4,12 +4,11 @@
     <img src="assets/images/dead_gif.gif" *ngIf="pokemon.health <= 0" id="expl">
   </mat-grid-tile>
   <mat-grid-tile>
-    <div class="panel" *ngIf="pokemon.health > 0">
+    <div class="panel" *ngIf="pokemon.health > 0 && pokemon.name != ''">
       {{pokemon.name}}<br/>
       <div class="health-box">
         <div class="health-bar" [ngStyle]="{ width:((pokemon.health / pokemon.maxHealth) * 100) + 'px' }"></div>
       </div>
-
       {{pokemon.health}}/{{pokemon.maxHealth}}
     </div>
   </mat-grid-tile>

@@ -1,7 +1,90 @@
-<mat-grid-list cols="2" rowHeight="2:1" id="bg">
-  <mat-grid-tile [colspan]="2" class="mrgn" id="title">
-    titre
-  </mat-grid-tile>
+<div id="background">
+  <div id="title">
+    POKEMON BATTLE
+  </div>
+  <div id="grid">
+    <div class="pannel1">
+      <div class="pkmn" (click)="resetPokemon('p1')">
+        <img src="{{p1.sprite_face}}" height="150" >
+        <div style="font-size: 25px;">{{p1.name}}</div>
+      </div>
+    </div>
+    <div id="versus">
+      <img src="/assets/images/vs.png" *ngIf="p1.name !== '' && p2.name !== ''" (click)="goToBattle()" height="200" id="vs">
+    </div>
+    <div class="pannel1">
+      <div class="pkmn" (click)="resetPokemon('p2')">
+        <img src="{{p2.sprite_face}}" height="150" >
+        <div style="font-size: 25px;">{{p2.name}}</div>
+      </div>
+    </div>
+    <div class="pannelList">
+      <mat-card class="card" *ngFor="let p of pokemons" (click)="selectCard(p, false)">
+        <img mat-card-image src="{{p.sprite_face}}">
+        <mat-card-content>
+          <p>{{p.name}}</p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="card" (click)="addPokemon = !addPokemon">
+        <img mat-card-image src="/assets/images/plus.png" style="margin-top:13px">
+        <mat-card-content>
+          <p>Add</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="pannelList" *ngIf="addPokemon">
+      <form (submit)="savePokemon()" novalidate>
+        <label>
+          Name:
+          <input type="text" [(ngModel)]="createdPokemon.name" name="name">
+        </label><br/>
+        <label>
+          Health:
+          <input type="number" [(ngModel)]="createdPokemon.maxHealth" name="maxHealth">
+        </label><br/>
+        <label>
+          Attack:
+          <input type="number" [(ngModel)]="createdPokemon.attack" name="attack">
+        </label><br/>
+        <label>
+          Attack_spe:
+          <input type="number" [(ngModel)]="createdPokemon.attack_spe" name="attack_spe">
+        </label><br/>
+        <label>
+          Defense:
+          <input type="number" [(ngModel)]="createdPokemon.defense" name="defense">
+        </label><br/>
+        <label>
+          Defense_spe:
+          <input type="number" [(ngModel)]="createdPokemon.defense_spe" name="defense_spe">
+        </label><br/>
+        <label>
+          Speed:
+          <input type="number" [(ngModel)]="createdPokemon.speed" name="speed">
+        </label><br/>
+        <label>
+          Type:
+          <select [(ngModel)]="createdPokemon.type" name="type">
+            <option *ngFor="let type of getTypes()" [ngValue]="type">
+              {{ type }}
+            </option>
+          </select>
+        </label><br/>
+        <label>
+          Sprite_face:
+          <input type="text" [(ngModel)]="createdPokemon.sprite_face" name="sprite_face">
+        </label><br/>
+        <label>
+          Sprite_back:
+          <input type="text" [(ngModel)]="createdPokemon.sprite_back" name="sprite_back">
+        </label><br/>
+        <button type="submit">Save</button>
+      </form>
+      <br/><br/>
+    </div>
+  </div>
+</div>
+<!-- <mat-grid-list cols="2" rowHeight="2:1" id="bg">
   <mat-grid-tile [colspan]="1" class="mrgn">
     pkmn1
   </mat-grid-tile>
@@ -11,4 +94,4 @@
   <mat-grid-tile [colspan]="2" class="mrgn">
     list
   </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->

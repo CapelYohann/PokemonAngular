@@ -6,7 +6,7 @@ import { SelectorComponent } from './selector/selector.component';
 const routes: Routes = [
   { path: '', component: SelectorComponent }, // path: '/'
   { path: 'selector',  component: SelectorComponent },
-  { path: 'battle', component: BattleComponent }
+  { path: 'battle/:p1/:p2', component: BattleComponent }
 ];
 
 @NgModule({

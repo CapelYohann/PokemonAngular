@@ -4,6 +4,8 @@ import { Priority } from '../classes/Priority';
 import { Attack } from '../classes/Attack';
 import { BattleService } from './service/battle/battle.service';
 import { PokemonService } from '../pokemon/service/pokemon.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { LoggerService } from '../logger/service/logger.service';
 
 @Component({
   selector: 'app-battle',
@@ -18,28 +20,50 @@ export class BattleComponent implements OnInit {
 
   areFighting = false;
   isFightOver = false;
-  
-  constructor(private battle: BattleService, private pokemonService: PokemonService) { }
+
+  constructor(private battle: BattleService, private pokemonService: PokemonService, private route: ActivatedRoute, private loggerService: LoggerService) { }
 
   ngOnInit(): void {
-    const a_attack = new Attack('Vive attaque', .3, 65, 'electric', true, Priority.High);
+    this.loggerService.clear();
+
+    const a_attack = new Attack('Vive attaque', .3, 65, 'normal', true, Priority.High);
     const b_attack = new Attack('Fire bolt', .3, 45, 'fire', true, Priority.Low);
     // this.p1 = new Pokemon('Pikachu', 100, 100, 50, 30, 20, 20, 1, 'NORMAL', undefined, a_attack);
     // this.p2 = new Pokemon('Salameche', 100, 100, 50, 30, 20, 20, 1, 'FIRE', undefined, b_attack);
 
-    this.pokemonService.getPokemonById(25)
-      .subscribe((data: Pokemon) => {
-        this.p1 = data;
-        this.p1.chosenMove = a_attack;
-        console.log(this.p1)
-      });
+    this.route.params
+       .subscribe((params: Params): void => {
+         let param = params.p1;
+         if(param === 'created') {
+           this.p1 = this.pokemonService.getCreatedPokemon(0);
+           this.p1.chosenMove = a_attack;
+           console.log(this.p1);
+         } else {
+           this.pokemonService.getPokemonByName(param)
+           .subscribe((data: Pokemon) => {
+               this.p1 = data;
+               this.p1.chosenMove = a_attack;
+               console.log(this.p1);
+             });
+         }
+       });
 
-    this.pokemonService.getPokemonById(4)
-      .subscribe((data: Pokemon) => {
-        this.p2 = data;
-        this.p2.chosenMove = b_attack;
-        console.log(this.p2)
-      });
+       this.route.params
+        .subscribe((params: Params): void => {
+          let param = params.p2;
+          if(param === 'created') {
+            this.p2 = this.pokemonService.getCreatedPokemon(1);
+            this.p2.chosenMove = b_attack;
+            console.log(this.p2);
+          } else {
+            this.pokemonService.getPokemonByName(param)
+              .subscribe((data: Pokemon) => {
+                this.p2 = data;
+                this.p2.chosenMove = b_attack;
+                console.log(this.p2);
+              });
+            }
+          });
   }
 
   startBattle(): void  {

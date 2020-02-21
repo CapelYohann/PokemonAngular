@@ -58,6 +58,10 @@ export class BattleService {
 
   constructor(private roundService: RoundService, private logger: LoggerService, private decimalPipe: DecimalPipe) { }
 
+  getTypes(): string[] {
+    return this.type_index;
+  }
+  
   stopBattle(): void {
     // clearInterval(this.timeoutId);
     this.subscriber.unsubscribe();
