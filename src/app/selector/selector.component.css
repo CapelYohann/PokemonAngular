@@ -1,5 +1,6 @@
 #background {
     background: url("/assets/images/selector_bg.png") no-repeat;
+    background-size: cover;
 }
 
 #title {

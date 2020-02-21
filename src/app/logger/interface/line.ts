@@ -1,4 +1,4 @@
 export interface Line {
   line: string;
-  pokemon: string;
+  type: string;
 }

@@ -12,8 +12,8 @@ export class LoggerService {
     this.clear();
   }
 
-  add(log: string, pokemon: string): void {
-    this.log.push({ line: log, pokemon: pokemon });
+  add(log: string, type: string): void {
+    this.log.push({ line: log, type: type });
   }
 
   get(): Line[] {

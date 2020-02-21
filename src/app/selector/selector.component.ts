@@ -3,7 +3,8 @@ import { Pokemon } from '../classes/Pokemon'
 import { PokemonService } from '../pokemon/service/pokemon.service';
 import { Router } from '@angular/router';
 import { BattleService } from '../battle/service/battle/battle.service';
-
+import {MatDialog} from '@angular/material/dialog';
+import {DialogComponent} from './dialog/dialog.component'
 
 @Component({
   selector: 'app-selector',
@@ -23,7 +24,19 @@ export class SelectorComponent implements OnInit {
 
   addPokemon = false;
 
-  constructor(private pokemonService: PokemonService, private battleService: BattleService, public router: Router) { }
+  constructor(public dialog: MatDialog, private pokemonService: PokemonService, private battleService: BattleService, public router: Router) { }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '350px',
+      data: this.initPokemon()
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.createdPokemon = result;
+      this.savePokemon();
+    });
+  }
 
   ngOnInit(): void {
     this.p1 = this.initPokemon();
@@ -90,7 +103,5 @@ export class SelectorComponent implements OnInit {
     this.selectCard(this.createdPokemon, true);
   }
 
-  getTypes(): string[] {
-    return this.battleService.getTypes();
-  }
+
 }

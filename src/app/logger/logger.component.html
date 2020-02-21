@@ -1,6 +1,6 @@
 <div id="pannel" ngx-auto-scroll lock-y-offset="10" observe-attributes>
   {{ date | date: 'medium' }}<br/>
   <div *ngFor="let line of getLogs(); let i = index">
-    <div pkmnHighlight [pokemon]="line.pokemon">{{line.line}}</div>
+    <div pkmnHighlight [type]="line.type">{{line.line}}</div>
   </div>
 </div>
